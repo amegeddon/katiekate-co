@@ -8,7 +8,16 @@ class Promotion(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
-    featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, related_name='+')
+    featured_product = models.ForeignKey(
+        'Product', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True,  
+        related_name='featured_in_collections' 
+    )
+    
+    def __str__(self) -> str:
+        return self.title
 
 class Product(models.Model):
     slug = models.SlugField(default='-')
