@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'gallery',
     'debug_toolbar',
     'store',
-    'tags',
 ]
 
 MIDDLEWARE = [
