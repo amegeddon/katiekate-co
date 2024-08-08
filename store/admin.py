@@ -13,6 +13,7 @@ class CollectionAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'unit_price', 'collection')
+    list_editable = ['unit_price']
     fields = ('slug', 'title', 'description', 'unit_price', 'inventory', 'collection', 'promotions')
     filter_horizontal = ('promotions',)
 
