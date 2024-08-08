@@ -8,7 +8,7 @@ from django.utils.html import format_html, urlencode
 from . import models
 from .models import Collection
 from django.contrib import admin
-from .models import Collection, Product, Promotion, Customer, Order 
+from .models import Collection, Product, Promotion, Customer, Order, OrderItem 
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
@@ -33,12 +33,16 @@ class CollectionAdmin(admin.ModelAdmin):
         
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    prepopulated_fields = {
+        'slug': ['title']
+    }
     list_display = ('title', 'unit_price', 'inventory_status', 'collection_title')
     list_editable = ['unit_price']
-    list_filter= ['collection']
+    list_filter= ['collection', 'last_update']
     list_per_page = 15
     list_select_related = ['collection']
-    fields = ('slug', 'title', 'description', 'unit_price', 'inventory', 'collection', 'promotions')
+    fields = ( 'title', 'slug', 'description', 'unit_price', 'inventory', 'collection', 'promotions')
     filter_horizontal = ('promotions',)
     
     def collection_title(self,product):
@@ -58,13 +62,21 @@ class PromotionAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
+    search_fields = ['first_name', 'last_name']
     list_display = ('first_name', 'last_name')
     list_per_page = 15
     ordering = ['first_name', 'last_name']
     search_fields = ['first_name__istartswith', 'last_name__istartswith']
-    
-    @admin.register(Order)
-    class OrderAdmin(admin.ModelAdmin):
-        list_display = ('id', 'placed_at', 'customer')
+
+class OrderItemInline(admin.TabularInline):
+    autocomplete_fields = ['product']
+    model = OrderItem 
+    extra = 1 
+    min_num = 1
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['customer']
+    list_display = ('id', 'payment_status', 'placed_at', 'customer')
+    inlines = [OrderItemInline] 
     
 

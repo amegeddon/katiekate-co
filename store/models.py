@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 # Create your models here.
@@ -23,10 +24,14 @@ class Collection(models.Model):
         ordering = ['title']
 
 class Product(models.Model):
-    slug = models.SlugField(default='-')
+    slug = models.SlugField()
     title = models.CharField(max_length=255)
     description = models.TextField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    unit_price = models.DecimalField(
+        max_digits=6, 
+        decimal_places=2,
+        validators= [MinValueValidator(1)]
+        )
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
