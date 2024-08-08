@@ -2,7 +2,7 @@ from django.contrib import admin
 from . import models
 from .models import Collection
 from django.contrib import admin
-from .models import Collection, Product, Promotion, Customer
+from .models import Collection, Product, Promotion, Customer, Order 
 
 
 @admin.register(Collection)
@@ -39,4 +39,9 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name')
     list_per_page = 15
     ordering = ['first_name', 'last_name']
+    
+    @admin.register(Order)
+    class OrderAdmin(admin.ModelAdmin):
+        list_display = ('id', 'placed_at', 'customer')
+    
 
