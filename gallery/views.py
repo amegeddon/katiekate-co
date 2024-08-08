@@ -6,5 +6,5 @@ from django.http import HttpResponse
 
 
 def hello_gallery(request):
-    return HttpResponse("Hello - your gallery will appear here")
+    return render(request, 'gallery.html')
 
