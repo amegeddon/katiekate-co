@@ -50,6 +50,7 @@ class OrderItem(models.Model):
 class address(models.Model):
     street = models.CharField(max_length=255) 
     city = models.CharField(max_length=255)
+    postcode = models.CharField(max_length=20, default="Unknown")
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE) # Many to one relationship so customer can have multiple delivery addresses  
    
 class Cart(models.Model):
