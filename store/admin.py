@@ -2,7 +2,9 @@ from typing import Any
 from django.contrib import admin
 from django.db.models.query import QuerySet
 from django.db.models import Count
+from django.urls import reverse
 from django.http import HttpRequest
+from django.utils.html import format_html, urlencode
 from . import models
 from .models import Collection
 from django.contrib import admin
@@ -13,16 +15,22 @@ class CollectionAdmin(admin.ModelAdmin):
     list_display = ('title', 'featured_product', 'products_count')
     fields = ('title', 'featured_product')
 
+    @admin.display(ordering='products_count')
     def products_count(self, collection):
-        return collection.products_count
-    products_count.admin_order_field = 'products_count'  # Allow sorting by this field
+        url = (
+            reverse('admin:store_product_changelist')
+            + '?'
+            + urlencode({
+                'collection__id': str(collection.id) 
+            })
+        )
+        return format_html('<a href="{}">{}</a>', url, collection.products_count)
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.annotate(
-            products_count=Count('product')
+        return super().get_queryset(request).annotate(
+            products_count=Count('product')  
         )
-
+        
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'unit_price', 'inventory_status', 'collection_title')
