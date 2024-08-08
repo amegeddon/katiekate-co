@@ -1,14 +1,27 @@
+from typing import Any
 from django.contrib import admin
+from django.db.models.query import QuerySet
+from django.db.models import Count
+from django.http import HttpRequest
 from . import models
 from .models import Collection
 from django.contrib import admin
 from .models import Collection, Product, Promotion, Customer, Order 
 
-
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'featured_product')
-    fields = ('title', 'featured_product')  
+    list_display = ('title', 'featured_product', 'products_count')
+    fields = ('title', 'featured_product')
+
+    def products_count(self, collection):
+        return collection.products_count
+    products_count.admin_order_field = 'products_count'  # Allow sorting by this field
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.annotate(
+            products_count=Count('product')
+        )
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
