@@ -12,13 +12,18 @@ class CollectionAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'unit_price', 'collection', 'inventory_status')
+    list_display = ('title', 'unit_price', 'inventory_status', 'collection_title')
     list_editable = ['unit_price']
     list_per_page = 15
+    list_select_related = ['collection']
     fields = ('slug', 'title', 'description', 'unit_price', 'inventory', 'collection', 'promotions')
     filter_horizontal = ('promotions',)
     
+    def collection_title(self,product):
+        return product.collection.title
+        
     
+    @admin.display(ordering = 'inventory')
     def inventory_status (self, product): 
         if product.inventory < 2:
             return 'Low'
