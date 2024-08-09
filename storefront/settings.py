@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'gallery',
     'debug_toolbar',
     'store',
+    'store_custom',
     'tags',
 ]
 
