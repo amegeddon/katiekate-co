@@ -1,14 +1,13 @@
 from typing import Any
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericTabularInline
 from django.db.models.query import QuerySet
 from django.db.models import Count
 from django.urls import reverse
 from django.http import HttpRequest
 from django.utils.html import format_html, urlencode
-from . import models
-from .models import Collection
-from django.contrib import admin
-from .models import Collection, Product, Promotion, Customer, Order, OrderItem 
+from .models import Collection, Product, Promotion, Customer, OrderItem, Order
+from tags.models import TaggedItem
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
@@ -31,8 +30,14 @@ class CollectionAdmin(admin.ModelAdmin):
             products_count=Count('product')  
         )
         
+
+class TagInline(GenericTabularInline):
+     autocomplete_fields = ['tag']
+     model = TaggedItem     
+        
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [TagInline]
     search_fields = ['title']
     prepopulated_fields = {
         'slug': ['title']
