@@ -6,23 +6,34 @@ from .models import Product, Collection
 from .serialisers import ProductSerializer, CollectionSerializer
 
 # Create your views here.
-@api_view()
+@api_view(['GET', 'POST'])
 def product_list(request):
-    queryset = Product.objects.select_related('collection').all()
-    serializer = ProductSerializer(
-        queryset, many=True, context = {'request': request})
-    return Response(serializer.data)
+    if request.method == 'GET':
+        queryset = Product.objects.select_related('collection').all()
+        serializer = ProductSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = ProductSerializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()  # Corrected: Added parentheses to execute the save
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view()
+@api_view(['GET', 'PUT'])
 def product_detail(request, id):
-        product = get_object_or_404(Product, pk=id) 
-        serializer = ProductSerializer(product)  
-        return Response(serializer.data)  
- 
-@api_view()
+    product = get_object_or_404(Product, pk=id) 
+    if request.method == 'GET':
+        serializer = ProductSerializer(product, context={'request': request})  
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = ProductSerializer(product, data=request.data, context={'request': request}) 
+        serializer.is_valid(raise_exception=True)
+        serializer.save()  
+        return Response(serializer.data, status=status.HTTP_200_OK)  
+
+@api_view(['GET'])
 def collection_detail(request, pk):
     collection = get_object_or_404(Collection, pk=pk) 
-    serializer = CollectionSerializer(collection) 
+    serializer = CollectionSerializer(collection, context={'request': request}) 
     return Response(serializer.data)
     
     

@@ -9,15 +9,14 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     price = serializers.DecimalField(source='unit_price', max_digits=10, decimal_places=2)
-    # collection = serializers.StringRelatedField() # using just this to return collection title rather than the below for now
     collection = serializers.HyperlinkedRelatedField(
         queryset = Collection.objects.all(),
         view_name = 'collection-detail'
     )
-    # )   Currently this breaks the store/ pathway - cant figure out why 
+   
 
     class Meta:
         model = Product
-        fields = ['id', 'title', 'price', 'collection']
+        fields = ['id', 'title', 'description', 'slug', 'inventory', 'price', 'collection']
 
 
