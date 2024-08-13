@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 djangorestframework = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
