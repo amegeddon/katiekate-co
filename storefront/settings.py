@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sessions',
+    'django_filters',
     'rest_framework',
     'gallery',
     'debug_toolbar',
@@ -138,3 +139,6 @@ REST_FRAMEWORK = {
 }
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
