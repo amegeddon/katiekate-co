@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from uuid import uuid4
 
 # Create your models here.
 
@@ -83,6 +84,7 @@ class address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE) # Many to one relationship so customer can have multiple delivery addresses  
    
 class Cart(models.Model):
+    id = models.UUIDField (primary_key = True, default=uuid4) #provides unnique 32 character identifier 
     created_at = models.DateTimeField(auto_now_add=True) 
     
 class CartItem(models.Model):
