@@ -88,9 +88,14 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) 
     
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.SmallIntegerField()
+    
+    class Meta: 
+         constraints = [
+            models.UniqueConstraint(fields=['cart', 'product'], name='unique_cart_product')
+        ] #this replaces the deprecated unique_together constraint, preventing the same product being added to cart more than once. Multiple products should increase quantity 
 
 class Review(models.Model): 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
