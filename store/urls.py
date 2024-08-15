@@ -14,7 +14,7 @@ products_router.register('reviews', views.ReviewViewSet, basename='product-revie
 
 # Nested router for routes under 'cart'
 carts_router = routers.NestedDefaultRouter(router, 'carts', lookup='cart')
-carts_router.register('items', views.CartItemViewset, basename='cart-items')
+carts_router.register('items', views.CartItemViewSet, basename='cart-items')
 
 
 # URLConf
