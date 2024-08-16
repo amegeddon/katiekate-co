@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'gallery',
     'debug_toolbar',
     'store',
-    'store_custom',
+    'core',
     'tags',
 ]
 
@@ -144,3 +144,6 @@ REST_FRAMEWORK = {
    
     
 }
+
+
+AUTH_USER_MODEL = 'core.User'
