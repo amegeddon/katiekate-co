@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,6 +15,7 @@ from .serialisers import ProductSerializer, CollectionSerializer, \
 ReviewSerializer, CartSerializer, CartItemSerializer, AddCartItemSerializer,UpdateCartItemSerializer, CustomerSerializer  
 from .filters import ProductFilter 
 from .pagination import PaginationCustom
+from .permissions import  IsAdminOrReadOnly, FullDjangoModelPermissions, ViewCustomerHistoryPermission
 
 # Create your views here.
 class ProductViewSet(ModelViewSet):
@@ -22,6 +23,7 @@ class ProductViewSet(ModelViewSet):
     serializer_class =  ProductSerializer
     filter_backends =[DjangoFilterBackend, SearchFilter, OrderingFilter]
     pagination_class = PaginationCustom
+    permission_classes = [IsAdminOrReadOnly]
     filterset_class = ProductFilter
     search_fields = ['title', 'description']
     ordering_fields = ['unit_price', 'last_update']
@@ -39,6 +41,7 @@ class CollectionViewSet(ModelViewSet) :
     queryset =  queryset =  Collection.objects.annotate(
             products_count=Count('products')).all()
     serializer_class = CollectionSerializer  
+    permission_classes = [IsAdminOrReadOnly]
     
     def destroy(self, request, *args, **kwargs):
         if Product.objects.filter(collection_id=kwargs['pk']):
@@ -78,19 +81,20 @@ class CartItemViewSet(ModelViewSet):
                 .select_related('product')
 
     
-class CustomerViewSet(CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
     
-    def get_permissions(self):
-        if self.request == 'GET':
-            return [AllowAny()]
-        return [IsAuthenticated()]
-    
-    @action(detail=False, methods=['GET', 'PUT'])        
+
+    @action(detail=True, permission_classes=[ViewCustomerHistoryPermission])
+    def history(self, request, pk):
+        return Response('ok')
+
+    @action(detail=False, methods=['GET', 'PUT'], permission_classes=[IsAuthenticated])
     def me(self, request):
-        (customer, created) = Customer.objects.get_or_create(user_id =request.user.id)
+        (customer, created) = Customer.objects.get_or_create(
+            user_id=request.user.id)
         if request.method == 'GET':
             serializer = CustomerSerializer(customer)
             return Response(serializer.data)
