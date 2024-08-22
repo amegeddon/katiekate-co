@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from decimal import Decimal
 from django.db import transaction
+from signals import order_created
 from store.models import Product, Collection, Review, Cart, CartItem, Customer, Order, OrderItem
 
 class CollectionSerializer(serializers.ModelSerializer):
