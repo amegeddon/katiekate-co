@@ -13,7 +13,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .models import Product, Collection, OrderItem, Review, Cart, CartItem, Customer, Order
 from .serialisers import ProductSerializer, CollectionSerializer, \
 ReviewSerializer, CartSerializer, CartItemSerializer, AddCartItemSerializer, \
-UpdateCartItemSerializer, CustomerSerializer, OrderSerializer
+UpdateCartItemSerializer, CustomerSerializer, OrderSerializer, CreateOrderSerializer
 from .filters import ProductFilter 
 from .pagination import PaginationCustom
 from .permissions import  IsAdminOrReadOnly, FullDjangoModelPermissions, ViewCustomerHistoryPermission
@@ -106,7 +106,24 @@ class CustomerViewSet(ModelViewSet):
             return Response(serializer.data)
 
 class OrderViewSet(ModelViewSet):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreateOrderSerializer
+        return OrderSerializer
+    
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
+    
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff:
+            return Order.objects.all()
+        customer_id = Customer.objects.only('id').get_or_create(user_id = user.id)
+        return Order.objects.filter(customer_id = customer_id)
+    
+    
+       
     
    

@@ -107,6 +107,20 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'customer', 'placed_at', 'payment_status', 'items']
+        
+class CreateOrderSerializer(serializers.Serializer):
+    cart_id = serializers.UUIDField()
+    
+    def save(self, **kwargs):
+        cart_id = self.validated_data['cart_id']
+        user_id = self.context['user_id']
 
+        # Retrieve or create the customer based on the user_id
+        customer, created = Customer.objects.get_or_create(user_id=user_id)
 
-            
+        # Create the order associated with the customer
+        order = Order.objects.create(customer=customer)
+
+        # Optionally, you can handle cart items here
+
+        return order
