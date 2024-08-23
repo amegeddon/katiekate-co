@@ -5,7 +5,7 @@ from django.db.models import Count
 from django.urls import reverse
 from django.http import HttpRequest
 from django.utils.html import format_html, urlencode
-from .models import Collection, Product, Promotion, Customer, OrderItem, Order
+from .models import Collection, Product, Promotion, Customer, OrderItem, Order, ProductImage    
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
@@ -28,6 +28,14 @@ class CollectionAdmin(admin.ModelAdmin):
             products_count=Count('products')  
         )
         
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    readonly_fields = ['thumbnail']
+
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src="{instance.image.url}" class="thumbnail" />')
+        return ''
 
 
 @admin.register(Product)
@@ -36,6 +44,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['title']
     }
+    inlines = [ProductImageInline]
     list_display = ('title', 'unit_price', 'inventory_status', 'collection_title')
     list_editable = ['unit_price']
     list_filter= ['collection', 'last_update']
@@ -53,6 +62,11 @@ class ProductAdmin(admin.ModelAdmin):
         if product.inventory < 2:
             return 'Low'
         return 'OK'
+    
+    class Media:
+        css = {
+            'all': ['store/styles.css']
+        }
     
 
 @admin.register(Promotion)
