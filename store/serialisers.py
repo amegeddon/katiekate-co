@@ -2,7 +2,8 @@ from rest_framework import serializers
 from decimal import Decimal
 from django.db import transaction
 from .signals import order_created
-from store.models import Product, Collection, Review, Cart, CartItem, Customer, Order, OrderItem
+from store.models import Product, Collection, Review, Cart, CartItem, Customer, Order, \
+OrderItem, ProductImage
 
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta: 
@@ -10,8 +11,20 @@ class CollectionSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'products_count' ]
         
     products_count = serializers.IntegerField(read_only = True)    
+    
+class ProductImageSerializer(serializers.ModelSerializer):
+    
+    def create(self, validated_data):
+        product_id = self.context['product_id']
+        return ProductImage.objects.create(product_id = product_id, **validated_data)
+
+    class Meta:
+        model = ProductImage 
+        fields = ['id', 'image']    
+        
 
 class ProductSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only = True)
     price = serializers.DecimalField(source='unit_price', max_digits=10, decimal_places=2)
     collection = serializers.HyperlinkedRelatedField(
         queryset = Collection.objects.all(),
@@ -19,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Product
-        fields = ['id', 'title', 'description', 'slug', 'inventory', 'price', 'collection']
+        fields = ['id', 'title', 'description', 'slug', 'inventory', 'price', 'collection', 'images']
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta: 
@@ -152,3 +165,4 @@ class CreateOrderSerializer(serializers.Serializer):
             order_created.send_robust(self.__class__, order=order)
 
             return order
+
