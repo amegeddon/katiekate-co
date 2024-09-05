@@ -169,7 +169,7 @@ EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 2525
-DEFAULT_EMAIL_FROM = 'katiekate2021@outlook.com '
+DEFAULT_EMAIL_FROM = 'katiekate2021@outlook.com'
 
 
 ADMINS = [
