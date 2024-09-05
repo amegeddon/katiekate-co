@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'djoser',
+    'background_task',
     'gallery',
     'debug_toolbar',
     'store',
@@ -175,3 +176,4 @@ DEFAULT_EMAIL_FROM = 'katiekate2021@outlook.com'
 ADMINS = [
     ('Amy', 'ameescook@gmail.com')
 ]
+
