@@ -8,6 +8,7 @@ djangorestframework = "*"
 drf-nested-routers = "*"
 django-filter = "*"
 djoser = "*"
+django-templated-mail = "*"
 
 [dev-packages]
 
