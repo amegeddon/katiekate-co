@@ -26,6 +26,7 @@ admin.site.index_title = 'Admin'
 
 
 urlpatterns = [
+    path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('gallery/', include('gallery.urls')),
     path('store/', include('store.urls')),
