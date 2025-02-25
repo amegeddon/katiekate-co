@@ -459,3 +459,4 @@ django.template.exceptions.TemplateDoesNotExist: hello.html
 2025-02-25 04:04:39,240 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-02-25 04:04:45,634 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
 2025-02-25 04:04:46,723 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-25 12:36:06,086 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.

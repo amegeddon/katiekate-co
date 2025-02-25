@@ -113,25 +113,13 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# https://docs.djangoproject.com/en/5.1/howto/static-file
 
 
-# URL for serving static files
+
 STATIC_URL = '/static/'
-
-# Folder where collected static files will be stored (for production)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'storefront', 'static'),  # Path to your storefront's static folder
-    os.path.join(BASE_DIR, 'gallery', 'static'),     # Path to your gallery's static folder
-    os.path.join(BASE_DIR, 'storefront', 'static'),
-    os.path.join(BASE_DIR, 'staticfiles'), 
-    os.path.join(BASE_DIR, 'core', 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     
-]
-
 
 # Whitenoise configuration for handling static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
