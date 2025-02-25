@@ -9,6 +9,7 @@ drf-nested-routers = "*"
 django-filter = "*"
 djoser = "*"
 django-templated-mail = "*"
+django-background-tasks = "*"
 
 [dev-packages]
 
