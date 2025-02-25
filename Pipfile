@@ -13,6 +13,7 @@ django-background-tasks = "*"
 django-debug-toolbar = "*"
 pillow = "*"
 dj-database-url = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
