@@ -462,3 +462,5 @@ django.template.exceptions.TemplateDoesNotExist: hello.html
 2025-02-25 12:36:06,086 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
 2025-02-25 17:22:10,427 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-02-25 17:38:33,537 (WARNING) - django.security.csrf - Forbidden (CSRF cookie not set.): /admin/login/
+2025-02-25 18:23:33,411 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
+2025-02-25 18:23:35,215 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
