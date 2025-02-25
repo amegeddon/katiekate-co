@@ -436,3 +436,8 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateDoesNotExist: hello.html
 2025-02-20 21:20:42,181 (INFO) - gallery.views - Calling httpbin
 2025-02-20 21:20:47,338 (INFO) - gallery.views - Received the response
+2025-02-25 03:35:53,178 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-25 03:38:05,733 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
+2025-02-25 03:38:06,718 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-25 03:38:09,620 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
+2025-02-25 03:38:10,524 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
