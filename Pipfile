@@ -12,6 +12,7 @@ django-templated-mail = "*"
 django-background-tasks = "*"
 django-debug-toolbar = "*"
 pillow = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
