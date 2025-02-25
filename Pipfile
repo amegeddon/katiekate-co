@@ -15,6 +15,7 @@ pillow = "*"
 dj-database-url = "*"
 mysqlclient = "*"
 waitress = "*"
+whitenoise = "*"
 
 [dev-packages]
 
