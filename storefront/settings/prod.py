@@ -7,6 +7,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://katiekate-prod-6e661edd389c.herokuapp.com",
+]
 
 
 SECRET_KEY = os.environ['SECRET_KEY']
