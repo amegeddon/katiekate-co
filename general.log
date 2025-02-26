@@ -464,3 +464,10 @@ django.template.exceptions.TemplateDoesNotExist: hello.html
 2025-02-25 17:38:33,537 (WARNING) - django.security.csrf - Forbidden (CSRF cookie not set.): /admin/login/
 2025-02-25 18:23:33,411 (INFO) - django.utils.autoreload - D:\katiekate-co\storefront\settings\common.py changed, reloading.
 2025-02-25 18:23:35,215 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-26 00:29:41,254 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-26 00:50:50,794 (INFO) - django.utils.autoreload - D:\katiekate-co\core\admin.py changed, reloading.
+2025-02-26 00:50:53,283 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-26 00:50:56,811 (INFO) - django.utils.autoreload - D:\katiekate-co\core\admin.py changed, reloading.
+2025-02-26 00:50:57,834 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-02-26 00:58:18,838 (INFO) - django.utils.autoreload - D:\katiekate-co\store\models.py changed, reloading.
+2025-02-26 00:58:19,874 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader

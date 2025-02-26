@@ -19,6 +19,7 @@ class UserAdmin(BaseUserAdmin):
 class TagInline(GenericTabularInline):
      autocomplete_fields = ['tag']
      model = TaggedItem   
+     extra = 1 
      
 class  CustomProductAdmin(ProductAdmin):
     inlines = [TagInline, ProductImageInline]     
