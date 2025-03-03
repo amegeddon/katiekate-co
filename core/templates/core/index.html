@@ -15,9 +15,48 @@
 
 <body>
 
-    <h1>INDEX</h1>
-    <div class='home_page'></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-black" href="#">KatieKate&Co</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <h2>Wilkommen</h2>
+    <div class='home-page'></div>
     <img src="{% static 'core/logo.jpg' %}" alt="Company logo" class="logo">
+
+
+    <script>
+        window.addEventListener("scroll", function () {
+            let navbar = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>

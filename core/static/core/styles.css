@@ -1,12 +1,12 @@
 body {
     margin: 0;
+    background-color: #1ec8aa;
 }
 
 .home-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1ec8aa;
     height: 100vh;
     width: 100vw;
 }
@@ -19,4 +19,29 @@ body {
     object-fit: cover;
     width: 100px;
     height: 100px;
+}
+
+/* Navbar */
+
+.navbar {
+    transition: background-color 0.3s;
+    background-color: transparent;
+}
+
+.navbar.scrolled {
+    background-color: #d3abab;
+    color: #fff;
+}
+
+.navbar.scrolled .nav-link {
+    color: #fff;
+}
+
+
+.navbar.scrolled .navbar-brand {
+    color: #fff;
+}
+
+h2 {
+    padding-top: 80px;
 }
