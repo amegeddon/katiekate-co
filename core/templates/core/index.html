@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'store' %}">Shop</a>
@@ -56,6 +56,12 @@
     <h2>Wilkommen</h2>
     <div class='home-page'></div>
     <img src="{% static 'core/logo.jpg' %}" alt="Company logo" class="logo">
+
+    <!-- Footer (Optional) -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2025 KatieKate&Co. All rights reserved.</p>
+    </footer>
+
 
 
     <script>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,42 +6,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Enter your description here" />
+    <meta name="Description" content="Contact page for KatieKate&Co">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+    <title>Contact Us - KatieKate&Co</title>
 </head>
 
 <body>
-    <div class="container mt-5">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KatieKate&Co</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'store' %}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Contact Form Section -->
+    <div class="container py-5 mt-5">
         <h1 class="text-center mb-4">Contact Us</h1>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <form method="post" action="" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_name">Name</label>
+                            <div class="form-group mb-3">
+                                <label for="id_name" class="form-label">Name</label>
                                 <input type="text" name="name" id="id_name" class="form-control"
-                                    placeholder="Your Name">
+                                    placeholder="Your Name" required>
                             </div>
-                            <div class="form-group">
-                                <label for="id_email">Email address</label>
+                            <div class="form-group mb-3">
+                                <label for="id_email" class="form-label">Email Address</label>
                                 <input type="email" name="email" id="id_email" class="form-control"
-                                    placeholder="Your Email">
+                                    placeholder="Your Email" required>
                             </div>
-                            <div class="form-group">
-                                <label for="id_message">Message</label>
+                            <div class="form-group mb-3">
+                                <label for="id_message" class="form-label">Message</label>
                                 <textarea name="message" id="id_message" class="form-control" rows="4"
-                                    placeholder="Your Message"></textarea>
+                                    placeholder="Your Message" required></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="id_photo">Upload Photo</label>
+                            <div class="form-group mb-3">
+                                <label for="id_photo" class="form-label">Upload Photo</label>
                                 <input type="file" name="photo" id="id_photo" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -48,6 +77,21 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2025 KatieKate&Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            let navbar = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>

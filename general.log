@@ -1638,3 +1638,9 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'store' not found. 'store' is
 2025-03-04 15:31:52,200 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-03-04 15:31:57,203 (INFO) - django.utils.autoreload - D:\katiekate-co\store\urls.py changed, reloading.
 2025-03-04 15:31:58,096 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:42:08,107 (WARNING) - django.request - Not Found: /core/index.html
+2025-03-04 15:42:26,094 (WARNING) - django.request - Not Found: /contact/assets/css/style.css
+2025-03-04 15:45:22,362 (INFO) - django.utils.autoreload - D:\katiekate-co\core\urls.py changed, reloading.
+2025-03-04 15:45:23,502 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:45:52,844 (INFO) - django.utils.autoreload - D:\katiekate-co\core\urls.py changed, reloading.
+2025-03-04 15:45:53,820 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
