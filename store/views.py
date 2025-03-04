@@ -20,11 +20,12 @@ from .filters import ProductFilter
 from .pagination import PaginationCustom
 from .permissions import  IsAdminOrReadOnly, FullDjangoModelPermissions, ViewCustomerHistoryPermission
 from django.shortcuts import render
+from .models import Product
 
 def store_view(request):
-    # Fetch data for the store (e.g., products, collections)
-    # You can pass this data to your template
-    return render(request, 'store/store.html')
+    products = Product.objects.all()  # Fetch all products
+    return render(request, 'store/store.html', {'products': products})
+
 
 # Create your views here.
 class ProductViewSet(ModelViewSet):

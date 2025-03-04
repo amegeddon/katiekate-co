@@ -1644,3 +1644,15 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'store' not found. 'store' is
 2025-03-04 15:45:23,502 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-03-04 15:45:52,844 (INFO) - django.utils.autoreload - D:\katiekate-co\core\urls.py changed, reloading.
 2025-03-04 15:45:53,820 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:59:27,752 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 15:59:28,885 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:59:50,177 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 15:59:51,110 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:59:54,252 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 15:59:55,134 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 15:59:59,101 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 16:00:00,101 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 16:01:04,486 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 16:01:05,422 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-03-04 16:01:13,810 (INFO) - django.utils.autoreload - D:\katiekate-co\store\views.py changed, reloading.
+2025-03-04 16:01:14,840 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
