@@ -1,8 +1,68 @@
+/* Ensure all images inside the card are the same size and fit nicely */
 .thumbnail {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    /* Make the image take up the full width of the card */
+    height: 250px;
+    /* Set a fixed height for all images */
     object-fit: cover;
+    /* Ensures images cover the area without distortion */
+    border-radius: 8px;
+    /* Optional: adds rounded corners to images */
+    margin-bottom: 1rem;
+    /* Optional: adds some space below the image */
 }
+
+/* Optional: Card Body styling to make sure text is aligned properly */
+.product-card .card-body {
+    text-align: center;
+    /* Center text inside the card */
+    padding: 1.5rem;
+    /* Padding inside the card body */
+}
+
+.product-card .card-title {
+    font-size: 1.2rem;
+    /* Adjust the title font size */
+    font-weight: bold;
+    /* Make the title bold */
+    margin-bottom: 0.5rem;
+    /* Space below the title */
+}
+
+.product-card .card-text {
+    font-size: 1rem;
+    /* Font size for the description */
+    color: #555;
+    /* A lighter color for the description */
+    margin-bottom: 1rem;
+    /* Space between description and price */
+}
+
+.product-card .text-primary {
+    font-size: 1.2rem;
+    /* Make the price stand out */
+    font-weight: bold;
+    /* Make the price bold */
+}
+
+.product-card .btn-success {
+    background-color: #28a745;
+    /* A green color for the button */
+    border-color: #28a745;
+    /* Button border color */
+    width: 100%;
+    /* Make the button take full width of the card */
+    padding: 10px;
+    /* Padding inside the button */
+}
+
+.product-card .btn-success:hover {
+    background-color: #218838;
+    /* Darker green when hovered */
+    border-color: #1e7e34;
+    /* Darker border color */
+}
+
 
 /* General Page Styles */
 body {
