@@ -4,6 +4,6 @@ from .views import HelloView
 import requests
 
 urlpatterns = [
-    path('', views.hello_gallery, name='hello_gallery'),
+    path('', views.hello_gallery, name='gallery'),
     path('hello/', HelloView.as_view(), name='hello'),
 ]
