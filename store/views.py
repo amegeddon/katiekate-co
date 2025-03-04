@@ -19,6 +19,12 @@ UpdateOrderSerializer, ProductImageSerializer
 from .filters import ProductFilter 
 from .pagination import PaginationCustom
 from .permissions import  IsAdminOrReadOnly, FullDjangoModelPermissions, ViewCustomerHistoryPermission
+from django.shortcuts import render
+
+def store_view(request):
+    # Fetch data for the store (e.g., products, collections)
+    # You can pass this data to your template
+    return render(request, 'store/store.html')
 
 # Create your views here.
 class ProductViewSet(ModelViewSet):
@@ -39,7 +45,12 @@ class ProductViewSet(ModelViewSet):
          if OrderItem.objects.filter(product_id=kwargs['pk']).count() > 0:
             return Response ({'error': 'This item cannot be deleted currently as it is associated with an order item'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
          return super().destroy(request, *args, **kwargs)
-     
+ 
+    def store_view(request):
+        # Fetch data for the store (products, collections, etc.)
+        # You can pass this data to your template
+        return render(request, 'store/store.html')
+        
 class CollectionViewSet(ModelViewSet) :
     queryset =  queryset =  Collection.objects.annotate(
             products_count=Count('products')).all()

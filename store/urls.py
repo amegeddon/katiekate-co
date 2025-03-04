@@ -3,6 +3,9 @@ from django.urls.conf import include
 from rest_framework_nested import routers
 from . import views
 
+
+
+
 router = routers.DefaultRouter()
 router.register('products', views.ProductViewSet, basename='products')
 router.register('collections', views.CollectionViewSet)
@@ -22,3 +25,13 @@ carts_router.register('items', views.CartItemViewSet, basename='cart-items')
 
 # URLConf
 urlpatterns = router.urls + products_router.urls + carts_router.urls
+
+urlpatterns = [
+    # Add a URL for the store view (the homepage for the store)
+    path('store/', views.store_view, name='store'),
+
+    # Add URLs for your API routes (products, collections, etc.)
+    path('store/products/', include(router.urls)),
+    path('store/carts/', include(carts_router.urls)),
+    path('store/collections/', include(products_router.urls)),
+]
