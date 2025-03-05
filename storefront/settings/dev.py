@@ -1,6 +1,12 @@
 from .common import *
 
 
+USE_CLOUDINARY = False  # Use local storage in development
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 DEBUG = True
 
 SECRET_KEY = 'django-insecure-qns=j&-y9_el+=+ofo=s+6h-1hztq8cxae28z7^5w&(1d618$9'

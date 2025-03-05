@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from uuid import uuid4
 from store.validators import validate_file_size
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -46,12 +47,17 @@ class Product(models.Model):
     class Meta:
         ordering = ['title']
 
+def get_image_field():
+    """Returns the appropriate image field based on the environment."""
+    if settings.USE_CLOUDINARY:
+        return CloudinaryField('image')
+    return models.ImageField(upload_to='store/images')
+
 class ProductImage(models.Model):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(
-        upload_to='store/images', 
-        validators=[validate_file_size])
+        'Product', on_delete=models.CASCADE, related_name='images'
+    )
+    image = get_image_field()  #  Dynamically use Cloudinary or local storage
     
 class Customer(models.Model):
     phone = models.CharField(max_length=255) 

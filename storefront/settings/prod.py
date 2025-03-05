@@ -27,12 +27,12 @@ EMAIL_HOST_PASSWORD = os.environ['TRISTI_SMTP_PASSWORD']
 DEFAULT_EMAIL_FROM = 'katiekate2021@outlook.com'
 
 
+USE_CLOUDINARY = True  #  Use Cloudinary in production
+
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
 }
 
-
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-MEDIA_URL = "/media/" 
